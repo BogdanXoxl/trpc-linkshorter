@@ -1,0 +1,19 @@
+{
+  "name": "trpc",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "server": "yarn workspace server dev",
+    "client": "yarn workspace client dev",
+    "dev": "concurrently \"yarn server\" \"yarn client\" -k -p \"[{name}]\" -n \"server,client\" -c \"yellow,blue\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
