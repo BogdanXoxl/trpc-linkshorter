@@ -2,15 +2,15 @@
   "folders": [
     {
       "path": "./",
-      "name": "project-root"
+      "name": "project-root",
     },
     {
-      "path": "./server",
-      "name": "server"
+      "path": "./trpc-server",
+      "name": "server",
     },
     {
       "path": "./client",
-      "name": "client"
-    }
-  ]
+      "name": "client",
+    },
+  ],
 }

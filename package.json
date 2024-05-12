@@ -6,11 +6,11 @@
   "private": true,
   "workspaces": [
     "client",
-    "server"
+    "trpc-server"
   ],
   "scripts": {
     "prepare": "husky install",
-    "server": "yarn workspace server dev",
+    "server": "yarn workspace trpc-server dev",
     "client": "yarn workspace client dev",
     "dev": "concurrently \"yarn server\" \"yarn client\" -k -p \"[{name}]\" -n \"server,client\" -c \"yellow,blue\""
   },
