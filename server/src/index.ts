@@ -11,7 +11,7 @@ app.use(cors());
 
 app.get("/helloworld", (req: Request, res: Response) => {
   res.send({
-    msg: "Express + TypeScript Server",
+    msg: "Express + TypeScript Server!",
   });
 });
 

@@ -9,11 +9,20 @@
     "server"
   ],
   "scripts": {
+    "prepare": "husky install",
     "server": "yarn workspace server dev",
     "client": "yarn workspace client dev",
     "dev": "concurrently \"yarn server\" \"yarn client\" -k -p \"[{name}]\" -n \"server,client\" -c \"yellow,blue\""
   },
+  "lint-staged": {
+    "./{server,client}/src/**/*.{ts,tsx}": [
+      "prettier --write"
+    ]
+  },
   "devDependencies": {
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "lint-staged": "^15.2.2",
+    "prettier": "^3.2.5",
+    "husky": "^8.0.0"
   }
 }
