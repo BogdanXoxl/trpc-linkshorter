@@ -11,5 +11,5 @@ model Link {
   id             String   @id @default(cuid())
   href           String   @unique
   shortLink      String   @unique
-  expirationDate DateTime
+  expirationDate DateTime @default(dbgenerated("(NOW() + '15 minutes'::interval)"))
 }
