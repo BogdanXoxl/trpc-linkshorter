@@ -1,31 +1,14 @@
-import { useEffect } from "react";
+import { MainPage } from "@pages/MainPage";
 import { trpc } from "./utils/trpc";
 
+// TODO:: add i18n
+
 function App() {
-  const { mutate, data } = trpc.links.add.useMutation();
-  const { data: link, refetch } = trpc.links.get.useQuery(data ?? "");
-
+  const { data } = trpc.links.test.useQuery();
   console.log(data);
-  console.log("get:  ", link);
-
-  useEffect(() => {
-    if (link) {
-      window.open(link, "_blank");
-    }
-  }, [link]);
-
-  useEffect(() => {
-    if (data) {
-      refetch();
-    }
-  }, [data, refetch]);
-
   return (
     <>
-      <h1 className="text-xs font-bold underline">Tailwind</h1>
-      <button onClick={() => mutate({ href: "https://google.com" })}>
-        Refetch
-      </button>
+      <MainPage />
     </>
   );
 }

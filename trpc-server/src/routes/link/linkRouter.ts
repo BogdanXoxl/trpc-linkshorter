@@ -5,8 +5,37 @@ import { publicProcedure, router } from "@/trpc";
 import { ALPHABET } from "./consts";
 import { TRPCError } from "@trpc/server";
 
+const EDelay = z.enum(["15m", "1h", "1d"]);
+type EDelay = z.infer<typeof EDelay>;
+
+const getProcedure = publicProcedure.input(z.string()).output(
+  z.object({
+    link: z.string(),
+  })
+);
+const addProcedure = publicProcedure
+  .input(
+    z.object({
+      href: z.string().url(),
+      delay: EDelay.optional(),
+    })
+  )
+  .output(
+    z.object({
+      link: z.string(),
+      expirationDate: z.date(),
+    })
+  );
+
+// TODO:: decomposition
+// TODO:: add remove expired links
+
 export const linkRouter = router({
-  get: publicProcedure.input(z.string()).query(async ({ input, ctx }) => {
+  test: publicProcedure.query(async () => {
+    await new Promise((resolve) => setTimeout(resolve, 5000));
+    return "done";
+  }),
+  get: getProcedure.query(async ({ input, ctx }) => {
     const shortLink = input.replace(/(^\w+:|^)\/\//, "");
 
     const link = await ctx.db.link.findUnique({
@@ -21,56 +50,60 @@ export const linkRouter = router({
         message: "Link not found",
       });
 
-    return "https://" + link.href;
+    return { link: link.href };
   }),
 
-  add: publicProcedure
-    .input(z.object({ href: z.string() }))
-    .mutation(async ({ input, ctx }) => {
-      const href = input.href.replace(/(^\w+:|^)\/\//, "");
+  // TODO:: add delay
+  add: addProcedure.mutation(async ({ input, ctx }) => {
+    const { href, delay } = input;
 
-      const existedLink = await ctx.db.link.findUnique({
-        where: {
-          href,
+    console.log(delay);
+
+    const existedLink = await ctx.db.link.findUnique({
+      where: {
+        href,
+      },
+      select: {
+        shortLink: true,
+        expirationDate: true,
+      },
+    });
+
+    if (existedLink)
+      return {
+        expirationDate: existedLink.expirationDate,
+        link: existedLink.shortLink,
+      };
+
+    const linksCount = await ctx.db.link.count({
+      where: {
+        expirationDate: {
+          gte: new Date(),
         },
-        select: {
-          shortLink: true,
-        },
-      });
+      },
+    });
 
-      if (existedLink) return "https://" + existedLink.shortLink;
+    const nanoid = customAlphabet(ALPHABET, 4 + Math.floor(linksCount / 1000));
 
-      const linksCount = await ctx.db.link.count({
-        where: {
-          expirationDate: {
-            gte: new Date(),
-          },
-        },
-      });
+    let generatedLink = nanoid();
 
-      const nanoid = customAlphabet(
-        ALPHABET,
-        4 + Math.floor(linksCount / 1000)
-      );
+    while (
+      await ctx.db.link.findUnique({ where: { shortLink: generatedLink } })
+    ) {
+      generatedLink = nanoid();
+    }
 
-      let generatedLink = nanoid();
+    const { shortLink, expirationDate } = await ctx.db.link.create({
+      data: {
+        href,
+        shortLink: generatedLink,
+      },
+      select: {
+        shortLink: true,
+        expirationDate: true,
+      },
+    });
 
-      while (
-        await ctx.db.link.findUnique({ where: { shortLink: generatedLink } })
-      ) {
-        generatedLink = nanoid();
-      }
-
-      const { shortLink } = await ctx.db.link.create({
-        data: {
-          href,
-          shortLink: generatedLink,
-        },
-        select: {
-          shortLink: true,
-        },
-      });
-
-      return "https://" + shortLink;
-    }),
+    return { link: shortLink, expirationDate };
+  }),
 });
