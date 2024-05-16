@@ -33,7 +33,7 @@ const addProcedure = publicProcedure
 export const linkRouter = router({
   test: publicProcedure.query(async () => {
     await new Promise((resolve) => setTimeout(resolve, 5000));
-    return "done";
+    return "https://google.com";
   }),
   get: getProcedure.query(async ({ input, ctx }) => {
     const shortLink = input.replace(/(^\w+:|^)\/\//, "");

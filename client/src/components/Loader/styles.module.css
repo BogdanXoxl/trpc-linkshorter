@@ -1,0 +1,41 @@
+.spinner {
+  background-image: linear-gradient(#6633ee 35%, rgba(102, 51, 238, 0.5));
+  width: 200px;
+  height: 200px;
+  animation: spinning82341 1.2s linear infinite;
+  text-align: center;
+  border-radius: 100px;
+  filter: blur(1px);
+  box-shadow:
+    0px -5px 20px 0px #6633ee,
+    0px 5px 20px 0px rgba(102, 51, 238, 0.5);
+}
+
+.spinner1 {
+  width: 200px;
+  height: 200px;
+  border-radius: 100px;
+  filter: blur(10px);
+}
+
+@keyframes spinning82341 {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.pulse {
+  animation: pulsate 1.2s ease-out infinite;
+}
+
+@keyframes pulsate {
+  0% {
+    scale: 1;
+  }
+  50% {
+    scale: 0.8;
+  }
+  100% {
+    scale: 1;
+  }
+}

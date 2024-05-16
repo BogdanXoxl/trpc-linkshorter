@@ -39,7 +39,9 @@ export const Select: ISelectComponent = (props) => {
           className="w-20 appearance-none forced-colors:appearance-auto border row-start-1 col-start-1 rounded-lg bg-slate-800 hover:border-primary hover:bg-transparent border-slate-600 text-slate-200 px-2 outline-none"
         >
           {options.map((opt) => (
-            <option value={opt.value}>{opt.label}</option>
+            <option key={opt.value} value={opt.value}>
+              {opt.label}
+            </option>
           ))}
         </select>
       </div>
