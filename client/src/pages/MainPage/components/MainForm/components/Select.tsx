@@ -16,9 +16,7 @@ export const Select: ISelectComponent = (props) => {
 
   return (
     <div className="flex gap-1 text-slate-500 select-none text-sm">
-      <label htmlFor="" className="">
-        Expiry period:
-      </label>
+      <label htmlFor="select">Expiry period:</label>
       <div className="grid">
         <svg
           className="pointer-events-none z-10 right-1 relative col-start-1 row-start-1 h-4 w-4 self-center justify-self-end forced-colors:hidden"
@@ -33,7 +31,7 @@ export const Select: ISelectComponent = (props) => {
           ></path>
         </svg>
         <select
-          key={value}
+          id="select"
           value={value}
           onChange={(e) => onChange(e.target.value as typeof value)}
           className="w-20 appearance-none forced-colors:appearance-auto border row-start-1 col-start-1 rounded-lg bg-slate-800 hover:border-primary hover:bg-transparent border-slate-600 text-slate-200 px-2 outline-none"

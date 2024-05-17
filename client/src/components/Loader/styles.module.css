@@ -26,6 +26,7 @@
 
 .pulse {
   animation: pulsate 1.2s ease-out infinite;
+  animation-delay: 100ms;
 }
 
 @keyframes pulsate {

@@ -12,6 +12,7 @@ export default {
           dark: "#090979",
         },
         secondary: "#000",
+        danger: "#ee5b33",
         textColor: {
           primary: colors.white,
           secondary: colors.slate[500],
