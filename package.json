@@ -1,18 +1,27 @@
 {
-  "name": "trpc",
+  "name": "trpc-linkshorter",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "private": true,
   "workspaces": [
-    "client",
+    "trpc-client",
     "trpc-server"
   ],
   "scripts": {
     "prepare": "husky install",
-    "server": "yarn workspace trpc-server dev",
-    "client": "yarn workspace client dev",
-    "dev": "concurrently \"yarn server\" \"yarn client\" -k -p \"[{name}]\" -n \"server,client\" -c \"yellow,blue\""
+    "dev:server": "yarn workspace trpc-server dev",
+    "dev:client": "yarn workspace trpc-client dev",
+    "dev": "concurrently \"yarn dev:server\" \"yarn dev:client\" -k -p \"[{name}]\" -n \"server,client\" -c \"yellow,blue\"",
+    "build:client": "yarn workspace trpc-client build",
+    "build:server": "yarn workspace trpc-server build",
+    "build": "yarn build:server && yarn build:client",
+    "serve:client": "yarn workspace trpc-client serve",
+    "serve:server": "yarn workspace trpc-server serve",
+    "serve": "concurrently \"yarn serve:server\" \"yarn serve:client\" -k -p \"[{name}]\" -n \"server,client\" -c \"yellow,blue\"",
+    "clean:dist": "rm -rf ./trpc-server/dist ./trpc-client/dist",
+    "clean:node_modules": "rm -rf ./trpc-server/node_modules ./trpc-client/node_modules ./node_modules",
+    "clean": "yarn clean:dist && yarn clean:node_modules"
   },
   "lint-staged": {
     "./{server,client}/src/**/*.{ts,tsx}": [
