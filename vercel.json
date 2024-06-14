@@ -4,16 +4,9 @@
   "builds": [
     {
       "src": "package.json",
-      "use": "@vercel/node",
+      "use": "build-scripts/build.js",
       "config": {
-        "distDir": "trpc-server/dist"
-      }
-    },
-    {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "trpc-client/dist"
+        "distDir": "test"
       }
     }
   ],
@@ -35,10 +28,6 @@
       {
         "cmd": "yarn install",
         "cwd": "."
-      },
-      {
-        "cmd": "yarn build:server",
-        "cwd": "./trpc-server"
       },
       {
         "cmd": "yarn build",
