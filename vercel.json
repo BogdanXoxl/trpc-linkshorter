@@ -1,0 +1,49 @@
+{
+  "version": 2,
+  "outputDirectory": "build",
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/node",
+      "config": {
+        "distDir": "trpc-server/dist"
+      }
+    },
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "trpc-client/dist"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "dist/index.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "dist/index.html"
+    }
+  ],
+  "build": {
+    "env": {
+      "NODE_ENV": "production"
+    },
+    "commands": [
+      {
+        "cmd": "yarn install",
+        "cwd": "."
+      },
+      {
+        "cmd": "yarn build:server",
+        "cwd": "./trpc-server"
+      },
+      {
+        "cmd": "yarn build",
+        "cwd": "."
+      }
+    ]
+  }
+}

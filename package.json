@@ -24,7 +24,7 @@
     "clean": "yarn clean:dist && yarn clean:node_modules"
   },
   "lint-staged": {
-    "./{server,client}/src/**/*.{ts,tsx}": [
+    "./{trpc-server,trpc-client}/src/**/*.{ts,tsx}": [
       "prettier --write"
     ]
   },
