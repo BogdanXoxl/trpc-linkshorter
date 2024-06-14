@@ -11,10 +11,10 @@ export const TrpcProvider: React.FC<React.PropsWithChildren> = ({
     trpc.createClient({
       links: [
         httpBatchLink({
-          url: "http://localhost:3000/trpc",
+          url: import.meta.env.VITE_HOST ?? "http://localhost:3000/trpc",
         }),
       ],
-    }),
+    })
   );
 
   return (
