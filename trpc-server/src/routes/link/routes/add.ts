@@ -10,12 +10,12 @@ const addProcedure = publicProcedure
     z.object({
       href: z.string().url(),
       delay: EDelay.optional(),
-    })
+    }),
   )
   .output(
     z.object({
       link: z.string(),
-    })
+    }),
   );
 
 export const add = addProcedure.mutation(async ({ input, ctx }) => {
@@ -46,5 +46,5 @@ export const add = addProcedure.mutation(async ({ input, ctx }) => {
     },
   });
 
-  return { link: (process.env.HOST ?? DEFAULT_HOST) + "/" + shortLink };
+  return { link: (process.env.CLIENT_HOST ?? DEFAULT_HOST) + "/" + shortLink };
 });
