@@ -11,7 +11,7 @@ export const TrpcProvider: React.FC<React.PropsWithChildren> = ({
     trpc.createClient({
       links: [
         httpBatchLink({
-          url: `http://${import.meta.env.VITE_HOST}/trpc`,
+          url: `${import.meta.env.VITE_HOST}/trpc`,
         }),
       ],
     }),
