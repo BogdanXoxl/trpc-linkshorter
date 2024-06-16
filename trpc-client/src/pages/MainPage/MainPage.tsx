@@ -8,6 +8,9 @@ import { Title, MainForm, Wrapper, CopyLinkModal } from "./components";
 
 export const MainPage: React.FC = () => {
   const { mutate: addLink, data } = trpc.links.add.useMutation();
+  const { data: test } = trpc.links.test.useQuery();
+
+  console.log(test);
 
   const handleSubmit = (data: LinkCreateInput) => {
     addLink(data);
