@@ -9,6 +9,7 @@
     "trpc-server"
   ],
   "scripts": {
+    "postinstall": "prisma generate",
     "prepare": "husky install",
     "dev:server": "yarn workspace trpc-server dev",
     "dev:client": "yarn workspace trpc-client dev",
