@@ -11,7 +11,7 @@ interface IProps {
 export const CopyLinkModal: React.FC<IProps> = (props) => {
   const { link } = props;
   const [isCopied, setIsCopied] = useState<boolean>(false);
-  const trunkedLink = trunk(link, 25);
+  const trunkedLink = trunk(link, 30);
 
   const handleCopyClick = () => {
     navigator.clipboard.writeText(link);

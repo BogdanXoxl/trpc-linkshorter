@@ -26,7 +26,6 @@ export const MainPage: React.FC = () => {
       modalOptions = {
         title: "Your Link!",
         html: <CopyLinkModal link={data.link} />,
-        timer: 0,
       };
     } else if (isError) {
       modalOptions = {
