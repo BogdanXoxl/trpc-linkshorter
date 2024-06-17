@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Background } from "@components/Background";
+import { ErrorTitle } from "@components/ErrorTitle";
 import { Loader } from "@components/Loader";
 import { trpc } from "@utils/trpc";
 import { showModal } from "@utils/showModal";
-import { ErrorTitle } from "./components";
 
 interface IProps {
   pathname: string;

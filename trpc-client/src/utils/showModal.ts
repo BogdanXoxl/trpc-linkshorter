@@ -3,7 +3,7 @@ import withReactContent from "sweetalert2-react-content";
 
 const MySwal = withReactContent(Swal);
 
-type Props = SweetAlertOptions & {
+export type TShowModalProps = SweetAlertOptions & {
   error?: boolean;
 };
 
@@ -14,7 +14,7 @@ export const showModal = ({
   timer = 10_000,
   error,
   ...props
-}: Props) => {
+}: TShowModalProps) => {
   MySwal.fire({
     html,
     title,
