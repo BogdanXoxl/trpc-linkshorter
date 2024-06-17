@@ -1,4 +1,4 @@
-import type { IOption } from "./components";
+import type { IOption } from "@components/Select";
 import type { Delay } from "./models";
 
 export const DELAY_OPTIONS: IOption<Delay>[] = [
