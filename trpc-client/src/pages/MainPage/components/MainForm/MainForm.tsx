@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { toURL } from "@utils/toURL";
 
-import { Select } from "./components";
-import { DELAY_OPTIONS, DEFAULT_DELAY_VALUE } from "./consts";
+import { Select } from "@components/Select";
+import { DELAY_OPTIONS, DEFAULT_DELAY_VALUE } from "./conts";
 
 import type { LinkCreateInput } from "@utils/trpc";
 import type { Delay } from "./models";

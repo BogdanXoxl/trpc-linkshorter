@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Icon } from "./components";
+import { trunk } from "@utils/trunk";
+
+import { Icon } from "./Icon";
 
 interface IProps {
   link: string;
@@ -9,6 +11,7 @@ interface IProps {
 export const CopyLinkModal: React.FC<IProps> = (props) => {
   const { link } = props;
   const [isCopied, setIsCopied] = useState<boolean>(false);
+  const trunkedLink = trunk(link, 25);
 
   const handleCopyClick = () => {
     navigator.clipboard.writeText(link);
@@ -28,8 +31,8 @@ export const CopyLinkModal: React.FC<IProps> = (props) => {
       <div className="relative">
         <input
           type="text"
-          className="col-span-6 border text-sm rounded-lg border-primary-light block w-full p-2.5 bg-slate-600 text-textColor-primary"
-          value={link}
+          className="col-span-6 border text-sm rounded-lg border-primary-light block w-full p-2.5 pr-9 bg-slate-600 text-textColor-primary"
+          value={trunkedLink}
           disabled
           readOnly
         />
