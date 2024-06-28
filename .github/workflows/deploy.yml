@@ -91,6 +91,10 @@ jobs:
       - name: Install Vercel CLI
         run: yarn global add vercel@latest
 
+      - name: Copy api folder
+        run: |
+          cp dist/api ./api
+
       - name: Show project tree
         run: |
           sudo apt-get install -y tree
