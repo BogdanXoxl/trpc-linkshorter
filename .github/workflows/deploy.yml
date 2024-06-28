@@ -61,7 +61,7 @@ jobs:
         run: |
           mkdir -p dist
           mv trpc-server/dist dist/api
-          mv trpc-client/dist dist/
+          mv trpc-client/dist dist
 
       - name: Install tree
         run: sudo apt-get install -y tree
