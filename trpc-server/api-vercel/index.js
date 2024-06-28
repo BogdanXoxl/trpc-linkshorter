@@ -1,3 +1,3 @@
-import { app } from "../dist/src/app";
+import { app } from "../dist/api/src/app";
 
 export default app;

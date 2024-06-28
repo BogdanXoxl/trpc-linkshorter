@@ -61,8 +61,6 @@ jobs:
         run: |
           mv trpc-client/dist dist
           mv trpc-server/dist dist/api
-          mv trpc-server/api-vercel/index.js dist/api
-          cat dist/api/index.js
 
       - name: Show project tree
         run: |
@@ -93,7 +91,7 @@ jobs:
 
       - name: Copy api folder
         run: |
-          cp -r dist/api ./api
+          cp -r trpc-server/api-vercel ./api
 
       - name: Show project tree
         run: |
