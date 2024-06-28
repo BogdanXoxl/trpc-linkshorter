@@ -3,7 +3,7 @@
   "outputDirectory": "dist",
   "buildCommand": "echo build",
   "rewrites": [
-    { "source": "/trpc/(.*)", "destination": "/api/index.js" },
+    { "source": "/trpc/(.*)", "destination": "/api" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
