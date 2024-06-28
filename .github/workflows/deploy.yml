@@ -61,6 +61,8 @@ jobs:
         run: |
           mv trpc-client/dist dist
           mv trpc-server/dist dist/api
+          mv trpc-server/api-vercel/index.js dist
+          mv vercel.json dist
 
       - name: Install tree
         run: sudo apt-get install -y tree
