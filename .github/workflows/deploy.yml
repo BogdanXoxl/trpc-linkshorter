@@ -62,7 +62,6 @@ jobs:
           mv trpc-client/dist dist
           mv trpc-server/dist dist/api
           mv trpc-server/api-vercel/index.js dist/api
-          mv vercel.json dist
           cat dist/api/index.js
 
       - name: Show project tree
