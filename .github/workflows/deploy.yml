@@ -67,7 +67,7 @@ jobs:
         run: sudo apt-get install -y tree
 
       - name: Show project tree
-        run: tree
+        run: tree -L 3
 
   deploy:
     runs-on: ubuntu-latest
@@ -76,13 +76,13 @@ jobs:
       - uses: actions/checkout@v2
       - name: Install Vercel CLI
         run: yarn global add vercel@latest
-        #remove
+        #remove start
       - name: Install tree
         run: sudo apt-get install -y tree
 
       - name: Show project tree
-        run: tree
-        #remove
+        run: tree -L 3
+        #remove end
       - name: Deploy to vercel
         run: |
           if ${{github.ref_name == 'main'}};then
