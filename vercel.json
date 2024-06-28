@@ -4,6 +4,6 @@
   "buildCommand": "echo build",
   "rewrites": [
     { "source": "/trpc/(.*)", "destination": "/api" },
-    { "source": "/((?!api/.*).*)", "destination": "/index.html" }
+    { "source": "/(.*)", "destination": "/" }
   ]
 }
