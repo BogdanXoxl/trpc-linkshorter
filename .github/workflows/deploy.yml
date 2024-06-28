@@ -70,12 +70,6 @@ jobs:
           sudo apt-get install -y tree
           tree -L 4 -I 'node_modules'
           
-      - name: Save package.json as artifact  
-        uses: actions/upload-artifact@v4.3.3
-        with:
-          name: package-json
-          path: package.json
-          
       - name: Save build output as artifact  
         uses: actions/upload-artifact@v4.3.3
         with:
@@ -86,13 +80,14 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build]
     steps:
+      - uses: actions/checkout@v4.1.7
+        with:
+          fetch-depth: 0 # Required to retrieve git history
+          
       - uses: actions/download-artifact@v4.1.7
         with:
           name: dist
-      
-      - uses: actions/download-artifact@v4.1.7
-        with:
-          name: package-json
+          path: dist
           
       - name: Install Vercel CLI
         run: yarn global add vercel@latest
