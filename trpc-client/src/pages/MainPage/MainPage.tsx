@@ -23,9 +23,11 @@ export const MainPage: React.FC = () => {
     let modalOptions: TShowModalProps | undefined = undefined;
 
     if (data) {
+      const shortLink = `${location.origin}/${data.shortLink}`;
+
       modalOptions = {
         title: "Your Link!",
-        html: <CopyLinkModal link={data.link} />,
+        html: <CopyLinkModal link={shortLink} />,
       };
     } else if (isError) {
       modalOptions = {

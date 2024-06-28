@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { publicProcedure } from "@/trpc";
 
-import { DEFAULT_HOST, EDelay } from "../consts";
+import { EDelay } from "../consts";
 import { createLink } from "../utils/createLink";
 import { getDate } from "../utils/getDate";
 
@@ -14,7 +14,7 @@ const addProcedure = publicProcedure
   )
   .output(
     z.object({
-      link: z.string(),
+      shortLink: z.string(),
     }),
   );
 
@@ -46,5 +46,5 @@ export const add = addProcedure.mutation(async ({ input, ctx }) => {
     },
   });
 
-  return { link: (process.env.CLIENT_HOST ?? DEFAULT_HOST) + "/" + shortLink };
+  return { shortLink };
 });
