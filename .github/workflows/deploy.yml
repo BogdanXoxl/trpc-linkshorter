@@ -93,7 +93,7 @@ jobs:
 
       - name: Copy api folder
         run: |
-          cp dist/api ./api
+          cp -r dist/api ./api
 
       - name: Show project tree
         run: |
