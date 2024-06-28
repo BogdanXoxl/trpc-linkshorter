@@ -3,12 +3,9 @@
   "outputDirectory": "dist",
   "buildCommand": "echo build",
   "rewrites": [
+    { "source": "/(.*)", "status": 404, "destination": "/index.html" },
     { "source": "/trpc/(.*)", "destination": "/api" },
     { "source": "/(.*)", "destination": "/index.html" },
     { "source": "/api(.*)", "destination": "/index.html" }
-  ],
-  "routes": [
-    { "handle": "filesystem" },
-    { "src": "/(.*)", "status": 404, "dest": "/index.html" }
   ]
 }
