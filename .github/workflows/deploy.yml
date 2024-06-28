@@ -62,7 +62,7 @@ jobs:
           mv trpc-client/dist dist
           mv trpc-server/dist dist/api
           mv trpc-server/api-vercel/index.js dist
-          mv vercel.json dist
+          mv vercel.json dist/api
           cat dist/api/index.js
 
       - name: Install tree
