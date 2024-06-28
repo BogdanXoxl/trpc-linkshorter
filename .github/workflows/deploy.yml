@@ -65,13 +65,19 @@ jobs:
           mv vercel.json dist
           cat dist/api/index.js
 
-      - name: Install tree
-        run: sudo apt-get install -y tree
-
       - name: Show project tree
-        run: tree -L 4 -I 'node_modules'
-        
-      - uses: actions/upload-artifact@v4.3.3
+        run: |
+          sudo apt-get install -y tree
+          tree -L 4 -I 'node_modules'
+          
+      - name: Save package.json as artifact  
+        uses: actions/upload-artifact@v4.3.3
+        with:
+          name: package-json
+          path: package.json
+          
+      - name: Save build output as artifact  
+        uses: actions/upload-artifact@v4.3.3
         with:
           name: dist
           path: dist
@@ -83,16 +89,19 @@ jobs:
       - uses: actions/download-artifact@v4.1.7
         with:
           name: dist
-          path: dist
+      
+      - uses: actions/download-artifact@v4.1.7
+        with:
+          name: package-json
+          
       - name: Install Vercel CLI
         run: yarn global add vercel@latest
-        #remove start
-      - name: Install tree
-        run: sudo apt-get install -y tree
 
       - name: Show project tree
-        run: tree -L 4 -I 'node_modules'
-        #remove end
+        run: |
+          sudo apt-get install -y tree
+          tree -L 4 -I 'node_modules'
+          
       - name: Deploy to vercel
         run: |
           if ${{github.ref_name == 'main'}};then
