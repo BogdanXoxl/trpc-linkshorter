@@ -47,18 +47,20 @@ yarn workspace trpc-client add <package>
 yarn workspace trpc-server add <package>
 ```
 
-### 🌶️ Why These Features:
+### 🌶️ Why This Tech Stack:
 
-* **LocalStorage Support:** This feature adds persistence to the app, ensuring that users' task data remains intact across sessions, enhancing usability.
+* **Yarn Workspaces** were chosen for their ability to efficiently manage the monorepo structure of the project, allowing for better dependency management and streamlined development across multiple packages. Their simplicity and ease of use make them preferable over other technologies for managing complex project structures.
 
-* **Upload/Download Functionality:** Enabling users to export and import task data empowers them to manage their tasks flexibly and safely.
+* **Vite** was selected as the build tool for its fast development server, optimized production builds, and better development experience, enhancing both the speed and quality of the development process.
 
-* **TypeScript Support:** TypeScript enhances code quality and maintainability by adding static types, catching errors early, and providing better developer tooling.
+* **Tailwind CSS** was used for styling due to its utility-first approach, allowing for rapid and consistent UI development with minimal custom CSS. The main goal of the project was to explore tRPC technology, not styling, so I used Tailwind for its simplicity. For complex animations, I supplemented it with vanilla CSS.
 
-* **State Manager:** As the app evolves, managing state becomes crucial. A state manager simplifies state management, enhancing code organization and reducing bugs.
+* **Express.js** was used for the backend due to its simplicity and flexibility. There was no need for a highly complex structure like Nest.js, as the project required a simple backend service with straightforward logic.
 
-* **Composition API:** The Composition API offers a more organized and reusable way to manage component logic, promoting better code structure and maintainability.
+* **tRPC** was chosen for its type-safe, end-to-end communication between the frontend and backend, ensuring type consistency and reducing the potential for runtime errors. Exploring and utilizing tRPC was a primary objective of this project.
 
-* **Edit functionality:** Allowing users to edit tasks improves the user experience by providing the flexibility to update task details without starting from scratch.
+* **React-Query:** was utilized for data fetching and state management on the client side, providing powerful and efficient handling of server state and caching. Its simplicity with tRPC integration made it an ideal choice for this project.
 
-* **Accessibility Enhancement (a11y):** Prioritizing accessibility ensures that the todo app is usable by everyone, regardless of their abilities. By making the app accessible, you're promoting inclusivity, adhering to legal and ethical obligations, and improving the overall user experience for everyone, including those with disabilities. This commitment to accessibility aligns with the principles of universal design and responsible development.
+* **Zod** was used for schema validation, ensuring that data being sent and received adheres to the expected structures, improving reliability and security.
+
+* **Vercel** was selected for deployment due to its seamless integration with frontend frameworks, serverless functions, and managed PostgreSQL database. I encountered some challenges deploying the entire project on a single Vercel instance, but with the help of GitHub Actions, I successfully managed the deployment. Vercel’s serverless architecture allows the project to scale effortlessly with demand, providing a reliable and scalable hosting solution.
